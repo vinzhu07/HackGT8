@@ -12,6 +12,7 @@ extern crate diesel;
 
 mod schema;
 mod tables;
+mod lists;
 
 type DbPool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 
@@ -35,6 +36,8 @@ async fn main() -> std::io::Result<()> {
             .data(pool.clone())
             .service(home::home)
             .service(home::home_like)
+            .service(lists::likes)
+            .service(lists::dislikes)
             .service(
                 fs::Files::new("/static", "./static")
                     .show_files_listing()
