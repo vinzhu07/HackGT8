@@ -22,6 +22,9 @@ async fn main() -> std::io::Result<()> {
 
     println!("http://server.zpparel.com:{}", port);
 
+    let connspec = "clothes.db";
+    let manager = ConnectionManager::<SqliteConnection>::new(connspec);
+
     let pool = r2d2::Pool::builder()
         .build(manager)
         .expect("Failed to create pool.");
