@@ -63,17 +63,18 @@ allCards.forEach(function (el) {
 
       event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
 
+      var id = parseInt(document.getElementsByClassName("_id")[0].textContent.replace(/(\r\n|\n|\r)/gm, ""));
+
       fetch("/item_swipe_status", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({status:event.deltaX > 0})
+        body: JSON.stringify({status:event.deltaX > 0, id})
       }).then(() => {
         window.location.reload();
       }
       )
-
       initCards();
     }
   });
@@ -96,17 +97,19 @@ function createButtonListener(love) {
       card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
     }
 
+    var id = parseInt(document.getElementsByClassName("_id")[0].textContent.replace(/(\r\n|\n|\r)/gm, ""));
+
     fetch("/item_swipe_status", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({status:love})
+      body: JSON.stringify({status:love, id})
     }).then(() => {
       window.location.reload();
     }
     )
-    //initCards();
+    initCards();
 
     event.preventDefault();
   };

@@ -18,6 +18,6 @@ pub struct Clothes {
 #[derive(Queryable, Insertable)]
 #[table_name="swipes"]
 pub struct Swipes {
-    cloth_id: i32,
-    love_status: bool
+    pub cloth_id: i32,
+    pub love_status: bool
 }

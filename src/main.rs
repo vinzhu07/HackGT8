@@ -1,9 +1,10 @@
+#![allow(unused)]
+
 use actix_web::{App, HttpServer};
 mod home;
 use actix_files as fs;
 
 use diesel::{r2d2::ConnectionManager, SqliteConnection};
-#[allow(unused)]
 use rand::Rng;
 
 #[macro_use]
