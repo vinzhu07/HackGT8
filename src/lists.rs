@@ -4,10 +4,11 @@ use actix_web::{
 };
 use askama::Template;
 use diesel::prelude::*;
-use diesel::{QueryDsl, SqliteConnection};
+use diesel::{QueryDsl, SqliteConnection, sql_query};
 use serde::Deserialize;
 
 use crate::tables::Clothes;
+use crate::schema::clothes;
 use crate::tables::Swipes;
 use crate::DbPool;
 
@@ -19,12 +20,11 @@ struct LikeTemplate {
 
 #[get("/likes")]
 async fn likes(pool: web::Data<DbPool>) -> Result<impl Responder> {
-    use crate::schema::clothes::dsl::*;
 
     let conn = pool.get().map_err(|e| ErrorBadRequest(e))?;
-    let items = clothes
-        .load::<Clothes>(&conn)
-        .map_err(|e| ErrorBadRequest(e))?;
+    let items: Vec<Clothes> = sql_query("SELECT * FROM clothes INNER JOIN swipes Swipes ON clothes.id = Swipes.cloth_id WHERE love_status = 1;")
+    .load(&conn)
+    .map_err(|e| ErrorBadRequest(e))?;
 
     Ok(DislikeTemplate {
         items
@@ -39,15 +39,11 @@ struct DislikeTemplate {
 
 #[get("/dislikes")]
 async fn dislikes(pool: web::Data<DbPool>) -> Result<impl Responder> {
-    use crate::schema::clothes::dsl::*;
-    //use crate::schema::swipes::dsl::*;
 
     let conn = pool.get().map_err(|e| ErrorBadRequest(e))?;
-    let items = clothes
-        .load::<Clothes>(&conn)
-        .inner_join(swipes.on(cloth_id.eq(id)))
-        .filter()
-        .map_err(|e| ErrorBadRequest(e))?;
+    let items: Vec<Clothes> = sql_query("SELECT * FROM clothes INNER JOIN swipes Swipes ON clothes.id = Swipes.cloth_id WHERE love_status = 0;")
+    .load(&conn)
+    .map_err(|e| ErrorBadRequest(e))?;
 
     Ok(DislikeTemplate {
         items

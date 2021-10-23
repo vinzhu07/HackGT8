@@ -20,6 +20,8 @@ table! {
     }
 }
 
+joinable!(swipes -> clothes (cloth_id));
+
 allow_tables_to_appear_in_same_query!(
     clothes,
     swipes,

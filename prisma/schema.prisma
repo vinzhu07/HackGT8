@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../clothes.db"
+}
+
+model diesel_schema_migrations {
+  version String   @id
+  run_on  DateTime @default(now())
+
+  @@map("__diesel_schema_migrations")
+}
+
+model clothes {
+  id                   Int      @id @default(autoincrement())
+  gender               String
+  master_category      String
+  sub_category         String
+  article_type         String
+  base_color           String
+  season               String
+  usage                String
+  product_display_name String
+  swipes               swipes[]
+}
+
+model swipes {
+  id          Int     @id @default(autoincrement())
+  cloth_id    Int
+  love_status Boolean
+  clothes     clothes @relation(fields: [cloth_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
