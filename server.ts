@@ -41,6 +41,7 @@ app.get('/likes', async (req, res) => {
     var name = [];
     var image = [];
     var usage = [];
+    var color= [];
 
     for (const element of likes) {
         var id = element.cloth_id;
@@ -50,9 +51,11 @@ app.get('/likes', async (req, res) => {
         var tempname = cloth.product_display_name;
         var tempimage = "/images/" + cloth.id + ".jpg"
         var tempusage = cloth.usage;
+        var tempcolor = cloth.base_color;
         name.push(tempname);
         image.push(tempimage);
         usage.push(tempusage);
+        color.push(tempcolor);
     }
 
     var code = "<table class='table' style = 'overflow-y:auto'>\
@@ -60,7 +63,8 @@ app.get('/likes', async (req, res) => {
 
     for (let x = 0; x < size; x++) {
         code += "<tr>";
-        code = code + "<td> <img src="+image[x]+" id = 'picture'> </td>";
+        code = code + "<td> <img src="+image[x]+" id = 'picture'> <p>" + name[x]+ "</p> </td>";
+        code = code + "<td>Color: "+color[x]+"<br>Category: "+ usage[x]+"<br> </td>"
         code += "</tr>";
 
     }
@@ -88,6 +92,8 @@ app.get('/dislikes', async (req, res) => {
     var name = [];
     var image = [];
     var usage = [];
+    var color= [];
+
 
     for (const element of likes) {
         var id = element.cloth_id;
@@ -97,9 +103,13 @@ app.get('/dislikes', async (req, res) => {
         var tempname = cloth.product_display_name;
         var tempimage = "/images/" + cloth.id + ".jpg"
         var tempusage = cloth.usage;
+        var tempcolor = cloth.base_color;
+
         name.push(tempname);
         image.push(tempimage);
         usage.push(tempusage);
+        color.push(tempcolor);
+
     }
 
     var code = "<table class='table' style = 'overflow-y:auto'>\
@@ -107,7 +117,8 @@ app.get('/dislikes', async (req, res) => {
 
     for (let x = 0; x < size; x++) {
         code += "<tr>";
-        code = code + "<td> <img src="+image[x]+" id = 'picture'> </td>";
+        code = code + "<td> <img src="+image[x]+" id = 'picture'> <p>" + name[x]+ "</p> </td>";
+        code = code + "<td>Color: "+color[x]+"<br>Category: "+ usage[x]+"<br> </td>";
         code += "</tr>";
 
     }

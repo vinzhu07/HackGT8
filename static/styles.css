@@ -186,5 +186,14 @@ button#love {
 
 #picture{
   max-height: 150px;
+  margin-bottom: 10px;
 }
 
+table {
+  width:100%;
+  table-layout:fixed;
+}
+.table td{
+  vertical-align:middle;
+  width:50%;
+}
