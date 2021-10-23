@@ -6,4 +6,10 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-askama = "0.10.5"
+actix-web = "3"
+askama = { version = "0.10.5", features = ["with-actix-web", "mime", "mime_guess"]}
+askama_actix = "0.11.1"
+rand = "0.8"
+actix-files = "0.5.0"
+diesel = { version = "1.4.8", features = ["sqlite", "r2d2"] }
+r2d2 = "0.8.9"
