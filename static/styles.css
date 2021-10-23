@@ -5,7 +5,7 @@
   }
   
   body {
-    background: #A5BEFF;
+    background-image: url("/static/lightBlueGradBG.jpg");
     overflow: hidden;
     font-family: sans-serif;
   }
@@ -79,6 +79,9 @@
     cursor: -webkit-grab;
     cursor: -moz-grab;
     cursor: grab;
+    -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
   }
   
   .moving.tinder--card {
@@ -141,6 +144,14 @@
   .fa-remove {
     color: #CDD6DD;
   }
+
+  .navbar{
+  background-color: #648BF0;
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+}
+
 .nav-link,
 .navbar-brand {
     color: #fff;
@@ -160,9 +171,20 @@
 button#nope {
   background-image: url("dislike.png");
   background-size: 100%;
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
 }
 
 button#love {
   background-image: url("like.png");
   background-size: 100%;
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
 }
+
+#picture{
+  max-height: 150px;
+}
+

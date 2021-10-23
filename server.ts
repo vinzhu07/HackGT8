@@ -2,6 +2,8 @@ import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
 const prisma = new PrismaClient()
 
+import Handlebars from 'hbs'
+
 import express from 'express'
 const app = express()
 const port = 3000
@@ -31,8 +33,7 @@ app.get('/', async (req, res) => {
 })
 
 
-app.get('/likes.hbs', async (req, res) => {
-    console.log("HIHIHIHI");
+app.get('/likes', async (req, res) => {
     const likes = await prisma.swipes.findMany({
         where: { love_status: true },
     });
@@ -54,12 +55,12 @@ app.get('/likes.hbs', async (req, res) => {
         usage.push(tempusage);
     }
 
-    var code = "<table class='table'>\
+    var code = "<table class='table' style = 'overflow-y:auto'>\
     <tbody>";
 
     for (let x = 0; x < size; x++) {
         code += "<tr>";
-        code = code + "<td> <img src="+image[x]+"> </td>";
+        code = code + "<td> <img src="+image[x]+" id = 'picture'> </td>";
         code += "</tr>";
 
     }
@@ -69,21 +70,57 @@ app.get('/likes.hbs', async (req, res) => {
 
     code += end;
     
-    console.log(code);
+    //console.log(code);
 
     res.render("likes", {
-        table: code
-        
+        table: new Handlebars.SafeString(code)
     })
 
     
 })
 
-app.get('/dislikes.hbs', async (req, res) => {
+app.get('/dislikes', async (req, res) => {
     
+    const likes = await prisma.swipes.findMany({
+        where: { love_status: false},
+    });
+    const size = likes.length;
+    var name = [];
+    var image = [];
+    var usage = [];
+
+    for (const element of likes) {
+        var id = element.cloth_id;
+        const cloth = await prisma.clothes.findUnique({
+            where: {id: id}
+        })
+        var tempname = cloth.product_display_name;
+        var tempimage = "/images/" + cloth.id + ".jpg"
+        var tempusage = cloth.usage;
+        name.push(tempname);
+        image.push(tempimage);
+        usage.push(tempusage);
+    }
+
+    var code = "<table class='table' style = 'overflow-y:auto'>\
+    <tbody>";
+
+    for (let x = 0; x < size; x++) {
+        code += "<tr>";
+        code = code + "<td> <img src="+image[x]+" id = 'picture'> </td>";
+        code += "</tr>";
+
+    }
+
+    var end = "</tbody>\
+  </table>";
+
+    code += end;
+    
+    //console.log(code);
 
     res.render("dislikes", {
-        
+        table: new Handlebars.SafeString(code)
     })
 
     
