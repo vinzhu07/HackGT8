@@ -2,21 +2,21 @@ use actix_web::{App, HttpServer};
 mod home;
 use actix_files as fs;
 
-use diesel::{SqliteConnection, r2d2::ConnectionManager};
+use diesel::{r2d2::ConnectionManager, SqliteConnection};
 #[allow(unused)]
 use rand::Rng;
 
 #[macro_use]
 extern crate diesel;
 
-mod tables;
 mod schema;
+mod tables;
 
 type DbPool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let port = 8081;
+    let port = 8082;
     // use the rng varient if we end up actually running multiple instances at the same time
     // let port = rand::thread_rng().gen_range(50000..60000);
 
@@ -29,10 +29,21 @@ async fn main() -> std::io::Result<()> {
         .build(manager)
         .expect("Failed to create pool.");
 
-    HttpServer::new(|| {
-        App::new().data(pool.clone()).service(home::home).service(home::home_like).service(fs::Files::new("/static", "./static").show_files_listing().show_files_listing())
+    HttpServer::new(move || {
+        App::new()
+            .data(pool.clone())
+            .service(home::home)
+            .service(home::home_like)
+            .service(
+                fs::Files::new("/static", "./static")
+                    .show_files_listing()
+                    .show_files_listing(),
+            )
+            .service(
+                fs::Files::new("/images", "./data/fashion-dataset/images")
+            )
     })
-        .bind("0.0.0.0:".to_string() + &port.to_string())?
-        .run()
-        .await
+    .bind("0.0.0.0:".to_string() + &port.to_string())?
+    .run()
+    .await
 }

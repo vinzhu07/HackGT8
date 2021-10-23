@@ -853,6 +853,7 @@ dependencies = [
  "diesel",
  "r2d2",
  "rand 0.8.4",
+ "serde",
 ]
 
 [[package]]

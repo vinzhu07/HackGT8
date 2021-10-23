@@ -11,3 +11,16 @@ table! {
         product_display_name -> Text,
     }
 }
+
+table! {
+    swipes (id) {
+        id -> Integer,
+        cloth_id -> Integer,
+        love_status -> Bool,
+    }
+}
+
+allow_tables_to_appear_in_same_query!(
+    clothes,
+    swipes,
+);

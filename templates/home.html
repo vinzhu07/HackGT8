@@ -19,13 +19,11 @@
               <i class="fa fa-heart"></i>
             </div>
             <div class="tinder--cards">
-              {% for image in images %}
               <div class="tinder--card">
                 <img src={{image}}>
-                <h3>Demo card {{loop.index}}</h3>
-                <p>This is a demo for Tinder like swipe cards</p>
+                <h4>{{name}}</h4>
+                <p>Usage: {{subtitle}}</p>
               </div>
-              {% endfor %}
             </div>
           
             <div class="tinder--buttons">

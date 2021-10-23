@@ -1,4 +1,5 @@
 use crate::schema::clothes;
+use crate::schema::swipes;
 
 #[derive(Queryable, Insertable)]
 #[table_name="clothes"]
@@ -12,4 +13,11 @@ pub struct Clothes {
     pub season: String,
     pub usage: String,
     pub product_display_name: String
+}
+
+#[derive(Queryable, Insertable)]
+#[table_name="swipes"]
+pub struct Swipes {
+    cloth_id: i32,
+    love_status: bool
 }
