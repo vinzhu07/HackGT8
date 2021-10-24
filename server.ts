@@ -42,6 +42,10 @@ app.get('/likes', async (req, res) => {
     var image = [];
     var usage = [];
     var color= [];
+    var gender = [];
+    var season = [];
+    var article = [];
+    var sub = [];
 
     for (const element of likes) {
         var id = element.cloth_id;
@@ -52,6 +56,10 @@ app.get('/likes', async (req, res) => {
         var tempimage = "/images/" + cloth.id + ".jpg"
         var tempusage = cloth.usage;
         var tempcolor = cloth.base_color;
+        article.push(cloth.article_type);
+        sub.push(cloth.sub_category);
+        season.push(cloth.season);
+        gender.push(cloth.gender);
         name.push(tempname);
         image.push(tempimage);
         usage.push(tempusage);
@@ -62,9 +70,13 @@ app.get('/likes', async (req, res) => {
     <tbody>";
 
     for (let x = 0; x < size; x++) {
-        code += "<tr>";
+        code += "<tr id = 'shadow'>";
         code = code + "<td> <img src="+image[x]+" id = 'picture'> <p>" + name[x]+ "</p> </td>";
-        code = code + "<td>Color: "+color[x]+"<br>Category: "+ usage[x]+"<br> </td>"
+        var nested = "";
+        nested = "<table class = 'table' id = 'nested'> <tbody><tr><td>Gender</td><td>Article Type</td><td>Sub Category</td><td>Color</td><td>Season</td><td>Usage</td></tr>";
+        nested += "<tr><td>"+gender[x]+"</td><td>"+article[x]+"</td><td>"+sub[x]+"</td><td>"+color[x]+"</td><td>"+season[x]+"</td><td>"+usage[x]+"</td>";
+        nested +="</tbody></table>";
+        code = code + "<td> "+nested+"</td>"
         code += "</tr>";
 
     }
@@ -93,6 +105,10 @@ app.get('/dislikes', async (req, res) => {
     var image = [];
     var usage = [];
     var color= [];
+    var gender = [];
+    var season = [];
+    var article = [];
+    var sub = [];
 
 
     for (const element of likes) {
@@ -104,7 +120,11 @@ app.get('/dislikes', async (req, res) => {
         var tempimage = "/images/" + cloth.id + ".jpg"
         var tempusage = cloth.usage;
         var tempcolor = cloth.base_color;
-
+        
+        article.push(cloth.article_type);
+        sub.push(cloth.sub_category);
+        season.push(cloth.season);
+        gender.push(cloth.gender);
         name.push(tempname);
         image.push(tempimage);
         usage.push(tempusage);
@@ -116,9 +136,13 @@ app.get('/dislikes', async (req, res) => {
     <tbody>";
 
     for (let x = 0; x < size; x++) {
-        code += "<tr>";
+        code += "<tr id = 'shadow'>";
         code = code + "<td> <img src="+image[x]+" id = 'picture'> <p>" + name[x]+ "</p> </td>";
-        code = code + "<td>Color: "+color[x]+"<br>Category: "+ usage[x]+"<br> </td>";
+        var nested = "";
+        nested = "<table class = 'table' id = 'nested'> <tbody><tr><td>Gender</td><td>Article Type</td><td>Sub Category</td><td>Color</td><td>Season</td><td>Usage</td></tr>";
+        nested += "<tr><td>"+gender[x]+"</td><td>"+article[x]+"</td><td>"+sub[x]+"</td><td>"+color[x]+"</td><td>"+season[x]+"</td><td>"+usage[x]+"</td>";
+        nested +="</tbody></table>";
+        code = code + "<td> "+nested+"</td>"
         code += "</tr>";
 
     }

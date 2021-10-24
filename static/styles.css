@@ -7,7 +7,6 @@
   body {
     background-image: url("/static/lightBlueGradBG.jpg");
     overflow: hidden;
-    font-family: sans-serif;
   }
   
   .tinder {
@@ -97,18 +96,21 @@
     pointer-events: none;
   }
   
-  .tinder--card h3 {
+  .tinder--card h4 {
     margin-top: 30px;
-    font-size: 32px;
+    font-size: 28px;
     padding: 0 16px;
     pointer-events: none;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
   }
   
   .tinder--card p {
     margin-top: 24px;
-    font-size: 20px;
+    font-size: 16px;
     padding: 0 16px;
     pointer-events: none;
+    font-family: "Courier New", monospace;
   }
   
   .tinder--buttons {
@@ -167,6 +169,19 @@
     justify-content: flex-end;
 }
 
+.navbar-text {
+  position: absolute;
+  width: 100%;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  left: 0;
+  text-align: center;
+  margin: auto;
+  padding-top: 10px;
+  font-family: "Courier New", monospace;
+	text-shadow: 0px 1px 4px #23430C;
+}
 
 button#nope {
   background-image: url("dislike.png");
@@ -187,6 +202,9 @@ button#love {
 #picture{
   max-height: 150px;
   margin-bottom: 10px;
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
 }
 
 table {
@@ -196,4 +214,25 @@ table {
 .table td{
   vertical-align:middle;
   width:50%;
+  font-family: "Courier New", monospace;
+}
+.table tr{
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+}
+
+#nested {
+  -moz-box-shadow: 0;
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  background-color: white;
+}
+
+h1 {
+  font-family: "Courier New", monospace;
+  font-size: 48px;
+  color: white;
+	-webkit-text-stroke: 1px #F8F8F8;
+	text-shadow: 0px 1px 4px #23430C;
 }
