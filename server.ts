@@ -6,7 +6,7 @@ import Handlebars from 'hbs'
 
 import express from 'express'
 const app = express()
-const port = 3000
+const port = 3002
 
 app.set('view engine', 'hbs');
 

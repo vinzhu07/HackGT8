@@ -99,14 +99,14 @@
   .tinder--card h4 {
     margin-top: 30px;
     font-size: 28px;
-    padding: 0 16px;
+    padding: 0 8px;
     pointer-events: none;
     font-family: "Courier New", monospace;
     font-weight: bold;
   }
   
   .tinder--card p {
-    margin-top: 24px;
+    margin-top: 8px;
     font-size: 16px;
     padding: 0 16px;
     pointer-events: none;
@@ -152,6 +152,7 @@
   -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
   -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
   box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  font-family: "Courier New", monospace;
 }
 
 .nav-link,
@@ -160,7 +161,13 @@
     cursor: pointer;
 }
 .nav-link {
+    font-size: 20px;
     margin-right: 1em !important;
+    font-weight: bold;
+}
+.navbar-brand {
+    font-size: 36px;
+    font-weight: bold;
 }
 .nav-link:hover {
     color: #000;
