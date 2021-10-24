@@ -1,4 +1,6 @@
 /target
+# The data folder contains this dataset unzipped
+# https://www.kaggle.com/paramaggarwal/fashion-product-images-dataset
 /data
 /importer/target
 node_modules
