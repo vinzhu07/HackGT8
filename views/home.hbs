@@ -12,7 +12,7 @@
 
 	</head>
     
-	<body>
+	<body onload="random();">
     <nav class="navbar navbar-expand-md">
       <a class="navbar-brand" href="">
         <img src="/static/spenderLogoThree.png" height=60px width=60px>
@@ -45,9 +45,16 @@
               <div class="tinder--card">
                 <img src={{image}}>
                 <h4>{{name}}</h4>
-                <p>Usage: {{subtitle}}</p>
+                <p style="margin-bottom:0;">Usage: {{subtitle}}</p>
+                <p style="margin : 0; padding-top:0;" id="price"></p>
               </div>
             </div>
+
+            <script>
+              function random(){
+                  document.getElementById("price").innerHTML = "$" + (Math.floor(Math.random() * 100) + 1);
+              }
+            </script>
           
             <div class="tinder--buttons">
               <button id="nope"><i class="fa fa-remove"></i></button>
